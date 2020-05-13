@@ -11,8 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "element-ui": "^2.4.11",
+    "node-sass": "^4.14.1",
     "nuxt": "^2.0.0",
-    "element-ui": "^2.4.11"
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {}
 }
