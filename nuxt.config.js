@@ -23,7 +23,8 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    '~assets/styles/bootstrap.css',
+    { src: '~assets/styles/index.scss', lang: 'scss' }
   ],
   /*
   ** Plugins to load before mounting the App
