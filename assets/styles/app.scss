@@ -1,0 +1,43 @@
+// init
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+// color
+.text-primary {
+  color: $--color-primary;
+}
+
+.bg-primary {
+  background-color: $--color-primary;
+}
+
+// border-radius
+.rounded-pill {
+  border-radius: 123px;
+}
+
+.rounded {
+  border-radius: 7px;
+}
+
+// icon
+.icon-circle {
+  border: 1px solid white;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.icon-circle-bg {
+  border: 0;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+
+// others
+.cursor-pointer {
+  cursor: pointer;
+}
