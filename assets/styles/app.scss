@@ -14,6 +14,10 @@ ul, li {
   background-color: $--color-primary;
 }
 
+.bg-gray {
+  background-color: gray;
+}
+
 // border-radius
 .rounded-pill {
   border-radius: 123px;
@@ -35,7 +39,6 @@ ul, li {
   padding: 2px;
   border-radius: 50%;
 }
-
 
 // others
 .cursor-pointer {

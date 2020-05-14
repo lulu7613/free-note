@@ -1,4 +1,4 @@
-.theme-dark {
+.theme-night {
   background-color: $--color-black;
   color: white;
 
@@ -9,6 +9,21 @@
   .sidebar-type-hover:hover {
     span {
       border-bottom: 1px solid white;
+    }
+  }
+}
+
+.theme-sunny {
+  background-color: $--color-ghost-white;
+  color: $--color-info;
+
+  .sidebar {
+    background-color: white;
+  }
+
+  .sidebar-type-hover:hover {
+    span {
+      border-bottom: 1px solid $--color-info;
     }
   }
 }

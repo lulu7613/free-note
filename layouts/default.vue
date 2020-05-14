@@ -1,5 +1,5 @@
 <template>
-  <div class="layout d-flex theme-dark">
+  <div class="layout d-flex" :class="[`theme-${appMode}`]">
     <Sidebar />
     <nuxt />
   </div>
@@ -11,6 +11,26 @@ import Sidebar from '~/components/Sidebar/index.vue'
 export default {
   components: {
     Sidebar
+  },
+
+  data() {
+    return {
+    }
+  },
+
+  watch: {
+  },
+
+  computed: {
+    appMode() {
+      return this.$store.state.appMode
+    }
+  },
+
+  created() {
+  },
+
+  methods: {
   }
 }
 </script>

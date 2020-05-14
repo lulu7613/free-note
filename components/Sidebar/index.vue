@@ -8,7 +8,11 @@
     </h3>
 
     <div class="mt-5">
-      <div class="mb-4 mx-4 py-3 bg-primary rounded d-flex align-items-center justify-content-center cursor-pointer" @click="act('建立筆記')">
+      <div 
+        class="mb-4 mx-4 py-3 bg-primary rounded d-flex align-items-center justify-content-center cursor-pointer" 
+        style="color: white"
+        @click="act('建立筆記')"
+      >
         <svg-icon icon-class="add" class-name="icon icon-circle" />
         <span class="ml-2" style="font-size: 1.1rem">建立筆記</span>
       </div>
