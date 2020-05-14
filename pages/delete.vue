@@ -1,16 +1,15 @@
 <template>
   <div>
-    所有筆記
+    垃圾桶
   </div>
 </template>
 
 <script>
-
 export default {
-  components: {
-  }
+  
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 </style>

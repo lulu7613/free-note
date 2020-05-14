@@ -11,15 +11,17 @@
       <div 
         class="mb-4 mx-4 py-3 bg-primary rounded d-flex align-items-center justify-content-center cursor-pointer" 
         style="color: white"
-        @click="act('建立筆記')"
       >
         <svg-icon icon-class="add" class-name="icon icon-circle" />
-        <span class="ml-2" style="font-size: 1.1rem">建立筆記</span>
+        <nuxt-link to="/create" class="ml-2" style="font-size: 1.1rem; border: 0">建立筆記</nuxt-link>
       </div>
       <ul class="mx-4">
-        <li v-for="(item, k) in sidebarList" :key="k" class="sidebar-type-hover rounded cursor-pointer mt-1 py-2 pl-4" @click="act(item.title)">
-          <svg-icon :icon-class="item.icon" class-name="icon mr-2" />
-          <span>{{ item.title }}</span>
+        <li 
+          v-for="(item, k) in sidebarList" 
+          :key="k" 
+          class="sidebar-type-hover d-flex rounded cursor-pointer mt-2 py-2 pl-4">
+          <svg-icon :icon-class="item.icon" class-name="icon mr-3" />
+          <nuxt-link :to="item.link">{{ item.title }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -42,9 +44,9 @@ export default {
     return {
       sidebarList: [  
         // { title: '建立筆記', icon: 'add' },
-        { title: '所有筆記', icon: 'file' },
-        { title: '已加星號', icon: 'star' },
-        { title: '垃圾桶', icon: 'delete' }
+        { title: '所有筆記', icon: 'file', link: '/' },
+        { title: '已加星號', icon: 'star', link: '/stars' },
+        { title: '垃圾桶', icon: 'delete', link: '/delete' }
       ]
     }
   },
@@ -53,9 +55,6 @@ export default {
   },
 
   methods: {
-    act(title) {
-      console.log(title)
-    }
   }
 }
 </script>

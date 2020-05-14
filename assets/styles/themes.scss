@@ -7,9 +7,13 @@
   }
 
   .sidebar-type-hover:hover {
-    span {
+    a {
       border-bottom: 1px solid white;
     }
+  }
+
+  .nuxt-link-exact-active {
+    border-bottom: 1px solid white;
   }
 }
 
@@ -22,8 +26,12 @@
   }
 
   .sidebar-type-hover:hover {
-    span {
+    a {
       border-bottom: 1px solid $--color-info;
     }
+  }
+
+  .nuxt-link-exact-active {
+    border-bottom: 1px solid $--color-info;
   }
 }

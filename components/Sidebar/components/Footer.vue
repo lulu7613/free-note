@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center justify-content-center">
-    <span class="mr-3">模式</span>
+    <span class="mr-4">模式</span>
     <svg-icon 
       icon-class="wb_sunny" 
       class-name="icon icon-circle-bg cursor-pointer"
@@ -8,7 +8,7 @@
       @click="actMode('sunny')" />
     <svg-icon 
       icon-class="nights_stay" 
-      class-name="icon icon-circle-bg cursor-pointer ml-2"
+      class-name="icon icon-circle-bg cursor-pointer ml-3"
       :class="{ 'bg-primary': isNightMode, 'bg-gray': !isNightMode }"
       @click="actMode('night')" />
   </div>
