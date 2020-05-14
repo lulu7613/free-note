@@ -5,4 +5,10 @@
   .sidebar {
     background-color: $--color-dark;
   }
+
+  .sidebar-type-hover:hover {
+    span {
+      border-bottom: 1px solid white;
+    }
+  }
 }
