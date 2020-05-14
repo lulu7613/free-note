@@ -1,3 +1,8 @@
+const path = require('path')
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 export default {
   mode: 'universal',
@@ -30,7 +35,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/svg-icon'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,6 +57,17 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      // 排除 nuxt 原配置的影响, Nuxt 默认有 vue-loader, 会处理 svg, img 等
+      // 找到匹配 .svg的规则, 然后将存放 svg 文件的目录排除
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [resolve('assets/icons/svg')]
+
+      //添加 loader 规则
+      config.module.rules.push({
+        test: /\.svg$/, //匹配.svg
+        include: [resolve('assets/icons/svg')], // 将存放 svg 的目录加入到loader处理目录
+        use: [{ loader: 'svg-sprite-loader', options: {symbolId: 'icon-[name]'}}]
+      })
     }
   }
 }

@@ -26,7 +26,9 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 * 預處理器需另外載入，以 sass 為例：
 
+```bash
 $ yarn add --save-dev node-sass sass-loader
+```
 
 
 ## element-ui 相關
@@ -45,7 +47,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 ```
 
 * 在 nuxt.config.js 引入 el-variable.scss
-```js
+```javascript
 export default {
   // ...
   css: [
@@ -58,12 +60,34 @@ export default {
 
 ## 其他
 
-* 引用思源黑體：
+### 引用思源黑體：
 ```scss
 // layouts/default
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css); // 思源黑體
 
 html {
   font-family: "Noto Sans TC";
+}
+```
+
+### 自訂 Vue 組件，處理 svg icon
+
+* 插件: svg-sprite-loader
+
+```bash
+$ yarn add svg-sprite-loader -D
+```
+
+* 參考文章：[Nuxt JS 使用 svg-sprite-loader 和 自定义 VUE组件 处理svg图标](https://zhuanlan.zhihu.com/p/75171152)
+
+* 注意事項1: nuxt.config.js 需先定義 resolve() 和 path
+
+* 注意事項2: resolve() 參數只需帶 dir
+
+```javascript
+const path = require('path')
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
 }
 ```
