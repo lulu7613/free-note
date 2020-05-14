@@ -54,3 +54,16 @@ export default {
   ]
 }
 ```
+
+
+## 其他
+
+* 引用思源黑體：
+```scss
+// layouts/default
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css); // 思源黑體
+
+html {
+  font-family: "Noto Sans TC";
+}
+```
