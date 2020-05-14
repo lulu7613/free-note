@@ -2,3 +2,20 @@
 @import './el-variables.scss';
 @import './themes.scss';
 
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.text-primary {
+  color: $--color-primary;
+}
+
+.bg-primary {
+  background-color: $--color-primary;
+}
+
+.rounded-pill {
+  border-radius: 123px;
+}

@@ -1,3 +1,8 @@
 .theme-dark {
   background-color: $--color-black;
+  color: white;
+
+  .sidebar {
+    background-color: $--color-dark;
+  }
 }
