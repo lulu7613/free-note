@@ -30,6 +30,38 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 $ yarn add --save-dev node-sass sass-loader
 ```
 
+### Vuex
+
+* 使用 modules 方式: 以功能( ex: todo.js、login.js )命名，放置 state、mutations、actions
+
+* 也可拆成 actions.js、mutations.js、index.js
+
+* state 必須使用 箭頭函式
+```javascript
+export const state = () => ({
+  appMode: 'night'
+})
+```
+
+* 在本專案使用 return 獲取 state
+```javascript
+export default {
+  // ...
+  computed: {
+    appMode() {
+      return this.$store.state.appMode
+    }
+  }
+}
+```
+
+* 獨立 actions.js、mutations.js、index.js，直接 export default
+```javascript
+// getters.js
+export default {
+  appMode: state => state.appMode
+}
+```
 
 ## element-ui 相關
 
