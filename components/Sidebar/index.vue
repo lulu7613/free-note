@@ -51,6 +51,7 @@ export default {
   },
 
   created() {
+    console.log(_.random(190, 200))
   },
 
   methods: {

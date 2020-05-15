@@ -4,6 +4,8 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+import webpack from 'webpack'
+
 export default {
   mode: 'universal',
   /*
@@ -68,6 +70,12 @@ export default {
         include: [resolve('assets/icons/svg')], // 将存放 svg 的目录加入到loader处理目录
         use: [{ loader: 'svg-sprite-loader', options: {symbolId: 'icon-[name]'}}]
       })
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        // global modules
+        '_': 'lodash'
+      })
+    ]
   }
 }
