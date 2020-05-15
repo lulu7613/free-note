@@ -13,7 +13,7 @@
         style="color: white"
       >
         <svg-icon icon-class="add" class-name="icon icon-circle" />
-        <nuxt-link to="/create" class="ml-2" style="font-size: 1.1rem; border: 0">建立筆記</nuxt-link>
+        <nuxt-link to="/note/223" class="ml-2" style="font-size: 1.1rem; border: 0">建立筆記</nuxt-link>
       </div>
       <ul class="mx-4">
         <li 
@@ -43,7 +43,6 @@ export default {
   data() {
     return {
       sidebarList: [  
-        // { title: '建立筆記', icon: 'add' },
         { title: '所有筆記', icon: 'file', link: '/' },
         { title: '已加星號', icon: 'star', link: '/stars' },
         { title: '垃圾桶', icon: 'delete', link: '/delete' }
