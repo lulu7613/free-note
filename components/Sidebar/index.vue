@@ -21,12 +21,12 @@
           :key="k" 
           class="sidebar-type-hover d-flex rounded cursor-pointer mt-2 py-2 pl-4">
           <svg-icon :icon-class="item.icon" class-name="icon mr-3" />
-          <nuxt-link :to="item.link">{{ item.title }}</nuxt-link>
+          <nuxt-link :to="item.link" class="box-size-border">{{ item.title }}</nuxt-link>
         </li>
       </ul>
     </div>
 
-    <Footer class="footer" />
+    <Footer class="footer box-size-border" />
   </div>
 </template>
 
@@ -59,21 +59,25 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~assets/styles/variables.scss";
 $sider-width: 240px;
 
 .sidebar {
-  width: $sider-width;
+  flex-basis: $sider-width;
   box-shadow: 0px 0px 4px $--color-shadow;
   position: relative;
 }
+
+  // 設定 list 列表的 border，避免 hover 造成位移現象
+  li a  {
+    border: 1px solid transparent;
+  }
 
 .footer {
   position: absolute;
   bottom: 10%;
   width: $sider-width;
-  box-sizing: border-box;
 }
 
 .icon {

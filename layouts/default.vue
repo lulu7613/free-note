@@ -1,7 +1,7 @@
 <template>
   <div class="layout d-flex" :class="[`theme-${appMode}`]">
     <Sidebar />
-    <nuxt />
+    <nuxt style="flex-grow: 1" />
   </div>
 </template>
 
