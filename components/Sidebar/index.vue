@@ -13,7 +13,7 @@
         style="color: white"
       >
         <svg-icon icon-class="add" class-name="icon icon-circle" />
-        <nuxt-link to="/note/223" class="ml-2" style="font-size: 1.1rem; border: 0">建立筆記</nuxt-link>
+        <span class="ml-2" style="font-size: 1.1rem" @click="createNewNote">建立筆記</span>
       </div>
       <ul class="mx-4">
         <li 
@@ -51,10 +51,13 @@ export default {
   },
 
   created() {
-    console.log(_.random(190, 200))
   },
 
   methods: {
+    createNewNote() {
+      const id = _.now()
+      this.$router.push({ path: `/note/${id}` })
+    }
   }
 }
 </script>
