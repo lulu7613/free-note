@@ -15,6 +15,15 @@
   .nuxt-link-exact-active {
     border-bottom: 1px solid white;
   }
+
+  // vue-quill-editor toolbar color
+  .ql-snow .ql-stroke {
+    stroke: white;
+  }
+
+  .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+    fill: white;
+  }
 }
 
 .theme-sunny {
@@ -33,5 +42,14 @@
 
   .nuxt-link-exact-active {
     border-bottom: 1px solid $--color-info;
+  }
+
+  // vue-quill-editor toolbar color
+  .ql-snow .ql-stroke {
+    stroke: $--color-info;
+  }
+
+  .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+    fill: $--color-info;
   }
 }

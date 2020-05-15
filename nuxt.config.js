@@ -31,14 +31,17 @@ export default {
   */
   css: [
     '~assets/styles/bootstrap.css',
-    { src: '~assets/styles/index.scss', lang: 'scss' }
+    { src: '~assets/styles/index.scss', lang: 'scss' },
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.core.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/svg-icon'
+    '@/plugins/svg-icon',
+    '@/plugins/nuxt-quill-plugin'
   ],
   /*
   ** Nuxt.js dev-modules
