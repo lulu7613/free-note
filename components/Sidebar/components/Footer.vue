@@ -50,8 +50,8 @@ export default {
 <style lang="scss" scoped>
 
 .icon {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   color: white;
 }
 

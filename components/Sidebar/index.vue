@@ -13,7 +13,7 @@
         style="color: white"
       >
         <svg-icon icon-class="add" class-name="icon icon-circle" />
-        <span class="ml-2" style="font-size: 1.1rem" @click="createNewNote">建立筆記</span>
+        <span class="ml-2" @click="createNewNote">建立筆記</span>
       </div>
       <ul class="mx-4">
         <li 
@@ -69,7 +69,7 @@ $sider-width: 240px;
 .sidebar {
   flex-basis: $sider-width;
   box-shadow: 0px 0px 4px $--color-shadow;
-  position: relative;
+  overflow: auto;
 }
 
   // 設定 list 列表的 border，避免 hover 造成位移現象
@@ -78,13 +78,13 @@ $sider-width: 240px;
   }
 
 .footer {
-  position: absolute;
-  bottom: 10%;
-  width: $sider-width;
+  width:fit-content;
+  margin: 0 auto;
+  padding-top: 5rem;
 }
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 </style>
