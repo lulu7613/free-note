@@ -16,9 +16,20 @@
     border-bottom: 1px solid white;
   }
 
-  // vue-quill-editor toolbar color
+  // 工具欄 toolbar
+  // 圖標
   .ql-snow .ql-stroke {
     stroke: white;
+  }
+
+  // 工具欄 align 下拉選單圖標顏色
+  .ql-picker-options .ql-stroke {
+    stroke: $--color-info;
+  }
+
+  // 工具欄 font size header 文字顏色
+  .ql-picker .ql-picker-label  {
+    color: white;
   }
 
   .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {

@@ -70,6 +70,104 @@ export default {
 * 方法2: 在 plugins/ 新增插件，在 nuxt.config.js 内配置 plugins
 
 
+#### vue-quill-editor
+
+```bash
+$ yarn add vue-quill-editor
+```
+
+* 參考文章: [vue-quill-editor 在nuxt中使用](https://www.jianshu.com/p/dcd2aac870b8)
+
+* 參考文章: [vue-quill-editor设置字体大小](https://www.jianshu.com/p/3a96f9469c03)
+
+```javascript
+// nuxt.config.js
+export default {
+  css: [
+    // 引用原始
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.core.css'
+    // 修改 CSS 樣式: 複製 node_modules/quill/dist/quill.snow.css & quill.core.css
+    '~assets/styles/quill/quill.snow.css',
+    '~assets/styles/quill/quill.core.css',
+  ],
+  plugins: [
+    '@/plugins/nuxt-quill-plugin'
+  ],
+}
+```
+
+```html
+<!-- 元件 -->
+ <div class="quill-container">
+      <div
+        :content="content"
+        v-quill:myQuillEditor="editorOption"
+        @change="onEditorChange($event)"
+        @blur="onEditorBlur($event)"
+        @focus="onEditorFocus($event)"
+        @ready="onEditorReady($event)"
+      >
+        <div class="output ql-bubble">
+          <div v-html="content"></div>
+        </div>
+      </div>
+    </div>
+```
+
+```javascript
+// 元件
+export default {
+  data() {
+    return {
+      content: '<h1>無標題</h1><p>請寫下內容</p>',
+      editorOption: {
+        // some quill options
+        modules: {
+          toolbar: {
+            container: [
+              [{ 'font': [] }],                                  // 字型
+              [{ 'size': ['small', false, 'large', 'huge'] }],   // 字體
+              ['bold', 'italic', 'underline', 'strike'],         // 粗體 斜體 下底線 刪除線
+              [{ 'align': [] }],                                 // 對齊
+              ['blockquote', 'code-block'],                      // 引用 程式碼
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],     // 有序列表 無序列表
+              [{ 'color': [] }, { 'background': [] }],           // 文字顏色 背景顏色
+              ['link', 'image', video]                           // 連結 圖片 影片
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         // 標題大小
+              [{ 'indent': '-1' }, { 'indent': '+1' }],          // 縮排
+            ],
+            handlers: {
+              'image': function () {
+                // 意思是使用插入图片的功能时候，触发文件上传控件的点击事件
+                document.getElementById('getFile').click();
+              }
+            }
+          }
+        },
+        theme: 'snow',                      // 外觀主題 (snow / bubble)
+        placeholder: 'Compose an epic...'
+      },
+
+      methods: {
+        onEditorBlur(editor) {
+          console.log('editor blur!', editor)
+        },
+        onEditorFocus(editor) {
+          console.log('editor focus!', editor)
+        },
+        onEditorReady(editor) {
+          console.log('editor ready!', editor)
+        },
+        onEditorChange({ editor, html, text }) {
+          console.log('editor change!', editor, html, text)
+          this.content = html
+        }
+      }
+}
+```
+
+
 #### 自訂 Vue 組件，處理 svg icon (插件 svg-sprite-loader)
 
 ```bash

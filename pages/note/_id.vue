@@ -27,19 +27,14 @@ export default {
         modules: {
           toolbar: {
             container: [
-              // ['bold', 'italic', 'underline', 'strike'],
-              // ['blockquote', 'code-block'],
-              // ['image']
-              ['bold', 'italic', 'underline', 'strike'],
-              ['blockquote', 'code-block'],
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-              [{ 'indent': '-1' }, { 'indent': '+1' }],
-              [{ 'size': ['small', false, 'large', 'huge'] }],
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-              [{ 'font': [] }],
-              [{ 'color': [] }, { 'background': [] }],
-              [{ 'align': [] }],
-              ['link', 'image', 'video']
+              [{ 'font': [] }],                                  // 字型
+              [{ 'size': ['small', false, 'large', 'huge'] }],   // 字體
+              ['bold', 'italic', 'underline', 'strike'],         // 粗體 斜體 下底線 刪除線
+              [{ 'align': [] }],                                 // 對齊
+              ['blockquote', 'code-block'],                      // 引用 程式碼
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],     // 有序列表 無序列表
+              [{ 'color': [] }, { 'background': [] }],           // 文字顏色 背景顏色
+              ['link', 'image']                                  // 連結 圖片 影片(video)
             ],
             handlers: {
               'image': function () {
@@ -84,34 +79,34 @@ export default {
 </script>
 
 <style lang="scss">
-  $quill-height: 60px;
+$quill-height: 60px;
 
-  // 容器
-  .quill-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow-y: auto;
-  }
+// 容器
+.quill-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
 
-  .ql-toolbar.ql-snow {
-    flex-basis: $quill-height;
-    padding: 1rem 10vw;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border: 0;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
-  }
+.ql-toolbar.ql-snow {
+  flex-basis: $quill-height;
+  padding: 1rem 10vw;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 0;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+}
 
-  .ql-container.ql-snow {
-    flex-grow: 2;
-    border: 0;
-    padding: 2rem 10vw 1rem 10vw;
-  }
+.ql-container.ql-snow {
+  flex-grow: 2;
+  border: 0;
+  padding: 2rem 10vw 1rem 10vw;
+}
 
-  // 編輯樣式
-  .ql-snow .ql-editor h1 {
-    margin-bottom: 30px;
-  }
+// 編輯樣式
+.ql-snow .ql-editor h1 {
+  margin-bottom: 30px;
+}
 
 </style>

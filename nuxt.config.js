@@ -32,8 +32,8 @@ export default {
   css: [
     '~assets/styles/bootstrap.css',
     { src: '~assets/styles/index.scss', lang: 'scss' },
-    'quill/dist/quill.snow.css',
-    'quill/dist/quill.core.css'
+    '~assets/styles/quill/quill.snow.css', // 複製 node_modules/quill/dist/
+    '~assets/styles/quill/quill.core.css', // 複製 node_modules/quill/dist/
   ],
   /*
   ** Plugins to load before mounting the App
