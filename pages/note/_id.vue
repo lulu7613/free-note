@@ -27,14 +27,12 @@ export default {
         modules: {
           toolbar: {
             container: [
-              [{ 'font': [] }],                                  // 字型
-              [{ 'size': ['small', false, 'large', 'huge'] }],   // 字體
-              ['bold', 'italic', 'underline', 'strike'],         // 粗體 斜體 下底線 刪除線
-              [{ 'align': [] }],                                 // 對齊
-              ['blockquote', 'code-block'],                      // 引用 程式碼
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],     // 有序列表 無序列表
-              [{ 'color': [] }, { 'background': [] }],           // 文字顏色 背景顏色
-              ['link', 'image']                                  // 連結 圖片 影片(video)
+              [{ 'font': ['思源黑體', 'Segoe'] }],
+              [{ 'size': ['small', false, 'large', 'huge'] }], 
+              ['bold', 'italic', 'underline', 'strike', { 'align': [] }],
+              ['blockquote', 'code-block'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'color': [] }, { 'background': [] }],
+              ['link', 'image']
             ],
             handlers: {
               'image': function () {
@@ -92,8 +90,6 @@ $quill-height: 60px;
 .ql-toolbar.ql-snow {
   flex-basis: $quill-height;
   padding: 1rem 10vw;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   border: 0;
   border-bottom: 1px solid rgba(204, 204, 204, 0.5);
 }
@@ -104,9 +100,26 @@ $quill-height: 60px;
   padding: 2rem 10vw 1rem 10vw;
 }
 
-// 編輯樣式
-.ql-snow .ql-editor h1 {
-  margin-bottom: 30px;
+// 自訂工具欄 font/字體
+.ql-snow { 
+  .ql-picker.ql-font{ 
+    .ql-picker-label{ 
+        &[data-value]::before { 
+            content:attr(data-value); 
+        } 
+    } 
+    .ql-picker-options{ 
+        span[data-value]::before { 
+            content:attr(data-value); 
+        } 
+    } 
+  } 
 }
 
+.ql-font-思源黑體 { 
+    font-family: "Noto Sans TC"; 
+}
+.ql-font-Segoe { 
+    font-family: "Segoe UI"; 
+}
 </style>

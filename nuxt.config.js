@@ -41,7 +41,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/svg-icon',
-    '@/plugins/nuxt-quill-plugin'
+    '@/plugins/vue-quill-editor'
   ],
   /*
   ** Nuxt.js dev-modules

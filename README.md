@@ -78,8 +78,6 @@ $ yarn add vue-quill-editor
 
 * 參考文章: [vue-quill-editor 在nuxt中使用](https://www.jianshu.com/p/dcd2aac870b8)
 
-* 參考文章: [vue-quill-editor设置字体大小](https://www.jianshu.com/p/3a96f9469c03)
-
 ```javascript
 // nuxt.config.js
 export default {
@@ -164,6 +162,66 @@ export default {
           this.content = html
         }
       }
+}
+```
+
+* 參考文章: [VueQuillEditor 如何添加自定义字体？](https://mouto.org/note/223)
+
+在 plugins/vue-quill-editor 編輯要使用的字體
+
+```javascript
+import Vue from 'vue'
+
+if (process.browser) {
+  // ...
+  // 由此開始設定
+  const fonts = ['思源黑體', 'Segoe']   // 要加入的字體
+  const Font = VueQuillEditor.Quill.imports['formats/font']
+  Font.whitelist = fonts; // 加入白名單
+  VueQuillEditor.Quill.register(Font, true)
+}
+```
+
+在元件內加入字體
+
+```javascript
+{
+  modules: {
+    toolbar: {
+      // ...
+      container: [
+        [{ 'font': ['思源黑體', 'Segoe'] }],
+      ],
+      // ...
+    }
+  }
+}
+```
+
+設定 CSS 樣式
+
+```scss
+// 自訂工具欄 font/字體
+.ql-snow { 
+  .ql-picker.ql-font{ 
+    .ql-picker-label{ 
+      &[data-value]::before { 
+          content:attr(data-value); 
+      } 
+    } 
+    .ql-picker-options{ 
+      span[data-value]::before { 
+          content:attr(data-value); 
+      } 
+    } 
+  } 
+}
+
+.ql-font-思源黑體 { 
+    font-family: "Noto Sans TC"; 
+}
+.ql-font-Segoe { 
+    font-family: "Segoe UI"; 
 }
 ```
 
