@@ -6,8 +6,8 @@
  */
 .ql-container {
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  /* font-family: Helvetica, Arial, sans-serif; */
+  font-size: 1rem;
   height: 100%;
   margin: 0px;
   position: relative;
@@ -58,6 +58,7 @@
 .ql-editor h6 {
   margin: 0;
   padding: 0;
+  line-height: 2rem;
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
 .ql-editor ol,
