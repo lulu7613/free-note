@@ -1,4 +1,12 @@
+// variable
 @import './variables.scss';
 @import './el-variables.scss';
+
+// 通用設定
 @import './app.scss';
+
+// 主題
 @import './themes.scss';
+
+// 其他
+@import './scrollbar.scss'
