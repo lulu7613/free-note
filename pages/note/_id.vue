@@ -83,6 +83,11 @@ export default {
 .quill-container {
   height: 100vh;
   overflow-y: hidden;
+
+  // scrollbar
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 }
 
 .ql-toolbar.ql-snow {
