@@ -1,17 +1,16 @@
 <template>
-  <div >
-    <div class="quill-container">
-      <div
-        :content="content"
-        v-quill:myQuillEditor="editorOption"
-        @change="onEditorChange($event)"
+  <section class="quill-container">
+    <client-only>
+      <quill-editor
+        ref="editor"
+        v-model="content"
+        :options="editorOption"
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
         @ready="onEditorReady($event)"
-      >
-      </div>
-    </div>
-  </div>
+      />
+    </client-only>
+  </section>
 </template>
 
 <script>

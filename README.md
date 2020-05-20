@@ -75,11 +75,12 @@ export default {
 ```bash
 $ yarn add vue-quill-editor
 ```
+* [vue-quill-editor 官方 nuxt 安裝範例](https://github.com/surmon-china/surmon-china.github.io/tree/source/projects/vue-quill-editor/nuxt)
 
 * 參考文章: [vue-quill-editor 在nuxt中使用](https://www.jianshu.com/p/dcd2aac870b8)
 
+nuxt.config.js
 ```javascript
-// nuxt.config.js
 export default {
   css: [
     // 引用原始
@@ -90,13 +91,57 @@ export default {
     '~assets/styles/quill/quill.core.css',
   ],
   plugins: [
+    // 官方
+    { src: '~plugins/vue-quill-editor', ssr: false }
+
+    // 參考文章的安裝方式
     '@/plugins/nuxt-quill-plugin'
   ],
 }
 ```
 
+plugins/vue-quill-editor.js
+
+```javascript
+// 官方
+import Vue from 'vue'
+import VueQuillEditor from 'vue-quill-editor'
+
+Vue.use(VueQuillEditor)
+
+const fonts = ['思源黑體', 'Segoe']
+const Font = VueQuillEditor.Quill.imports['formats/font']
+Font.whitelist = fonts; 
+VueQuillEditor.Quill.register(Font, true)
+
+// 參考文章的安裝方式
+import Vue from 'vue'
+
+if (process.browser) {
+// 加一个浏览器端判断，只在浏览器端才渲染就不会报错了
+  const VueQuillEditor = require('vue-quill-editor/dist/ssr')
+  Vue.use(VueQuillEditor)
+}
+
+```
+
+元件
+
 ```html
-<!-- 元件 -->
+<section class="quill-container">
+  <client-only>
+    <quill-editor
+      ref="editor"
+      v-model="content"
+      :options="editorOption"
+      @blur="onEditorBlur($event)"
+      @focus="onEditorFocus($event)"
+      @ready="onEditorReady($event)"
+    />
+  </client-only>
+</section>
+
+<!-- 參考文章的安裝方式 -->
  <div class="quill-container">
       <div
         :content="content"
@@ -331,5 +376,46 @@ export default {
 
 html {
   font-family: "Noto Sans TC";
+}
+```
+
+### 關於介面切版 CSS 設定
+
+* layout 分成 sidebar 和 nuxt 頁面顯示，使用 flex 切版
+
+Sidebar.vue
+``` css
+.sidebar {
+  min-width: 240px;
+}
+```
+
+layout
+```vue
+<template>
+  <div class="layout d-flex" :class="[`theme-${appMode}`]">
+    <Sidebar />
+    <nuxt style="width: 100%" />
+  </div>
+</template>
+```
+
+* _id.vue (筆記本主體)
+
+本來變數是用 scss 方式設定，但 calc() 取不到 scss 的變數，因此改使用 :root 設定。
+
+```scss
+.quill-container { // 父容器
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.ql-toolbar.ql-snow { // toolbar
+  min-height: var(--toolbar-height);
+  margin-bottom: var(--toolbar-mb);
+}
+
+.ql-container.ql-snow { // edit
+  height: calc(100vh - var(--toolbar-height) - var(--toolbar-mb));
 }
 ```
