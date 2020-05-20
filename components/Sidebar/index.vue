@@ -64,10 +64,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "~assets/styles/variables.scss";
-$sider-width: 240px;
+$sidebar-width: 240px;
 
 .sidebar {
-  flex-basis: $sider-width;
+  min-width: $sidebar-width;
   box-shadow: 0px 0px 4px $--color-shadow;
   overflow: auto;
 }

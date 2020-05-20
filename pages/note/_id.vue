@@ -9,9 +9,6 @@
         @focus="onEditorFocus($event)"
         @ready="onEditorReady($event)"
       >
-        <div class="output ql-bubble">
-          <div v-html="content"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -59,16 +56,16 @@ export default {
 
   methods: {
     onEditorBlur(editor) {
-      console.log('editor blur!', editor)
+      // console.log('editor blur!', editor)
     },
     onEditorFocus(editor) {
-      console.log('editor focus!', editor)
+      // console.log('editor focus!', editor)
     },
     onEditorReady(editor) {
-      console.log('editor ready!', editor)
+      // console.log('editor ready!', editor)
     },
     onEditorChange({ editor, html, text }) {
-      console.log('editor change!', editor, html, text)
+      // console.log('editor change!', editor, html, text)
       this.content = html
     },
 
@@ -77,27 +74,30 @@ export default {
 </script>
 
 <style lang="scss">
-$quill-height: 60px;
+:root {
+  --toolbar-height: 60px;
+  --toolbar-mb: 35px;
+  --padding-width: 8vw;
+}
 
 // 容器
 .quill-container {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .ql-toolbar.ql-snow {
-  flex-basis: $quill-height;
-  padding: 1rem 10vw;
+  min-height: var(--toolbar-height);
+  margin-bottom: var(--toolbar-mb);
+  padding: 1rem var(--padding-width);
   border: 0;
   border-bottom: 1px solid rgba(204, 204, 204, 0.5);
 }
 
 .ql-container.ql-snow {
-  flex-grow: 2;
+  height: calc(100vh - var(--toolbar-height) - var(--toolbar-mb));
+  padding: 0 var(--padding-width);
   border: 0;
-  padding: 2rem 10vw 1rem 10vw;
 }
 
 // 自訂工具欄 font/字體
