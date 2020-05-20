@@ -77,8 +77,6 @@ $ yarn add vue-quill-editor
 ```
 * [vue-quill-editor 官方 nuxt 安裝範例](https://github.com/surmon-china/surmon-china.github.io/tree/source/projects/vue-quill-editor/nuxt)
 
-* 參考文章: [vue-quill-editor 在nuxt中使用](https://www.jianshu.com/p/dcd2aac870b8)
-
 nuxt.config.js
 ```javascript
 export default {
@@ -93,9 +91,6 @@ export default {
   plugins: [
     // 官方
     { src: '~plugins/vue-quill-editor', ssr: false }
-
-    // 參考文章的安裝方式
-    '@/plugins/nuxt-quill-plugin'
   ],
 }
 ```
@@ -106,23 +101,7 @@ plugins/vue-quill-editor.js
 // 官方
 import Vue from 'vue'
 import VueQuillEditor from 'vue-quill-editor'
-
 Vue.use(VueQuillEditor)
-
-const fonts = ['思源黑體', 'Segoe']
-const Font = VueQuillEditor.Quill.imports['formats/font']
-Font.whitelist = fonts; 
-VueQuillEditor.Quill.register(Font, true)
-
-// 參考文章的安裝方式
-import Vue from 'vue'
-
-if (process.browser) {
-// 加一个浏览器端判断，只在浏览器端才渲染就不会报错了
-  const VueQuillEditor = require('vue-quill-editor/dist/ssr')
-  Vue.use(VueQuillEditor)
-}
-
 ```
 
 元件
@@ -140,22 +119,6 @@ if (process.browser) {
     />
   </client-only>
 </section>
-
-<!-- 參考文章的安裝方式 -->
- <div class="quill-container">
-      <div
-        :content="content"
-        v-quill:myQuillEditor="editorOption"
-        @change="onEditorChange($event)"
-        @blur="onEditorBlur($event)"
-        @focus="onEditorFocus($event)"
-        @ready="onEditorReady($event)"
-      >
-        <div class="output ql-bubble">
-          <div v-html="content"></div>
-        </div>
-      </div>
-    </div>
 ```
 
 ```javascript
@@ -179,16 +142,10 @@ export default {
               ['link', 'image', video]                           // 連結 圖片 影片
               [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         // 標題大小
               [{ 'indent': '-1' }, { 'indent': '+1' }],          // 縮排
-            ],
-            handlers: {
-              'image': function () {
-                // 意思是使用插入图片的功能时候，触发文件上传控件的点击事件
-                document.getElementById('getFile').click();
-              }
-            }
+            ]
           }
         },
-        theme: 'snow',                      // 外觀主題 (snow / bubble)
+        theme: 'snow',  // 外觀主題 (snow / bubble)
         placeholder: 'Compose an epic...'
       },
 
@@ -215,10 +172,8 @@ export default {
 在 plugins/vue-quill-editor 編輯要使用的字體
 
 ```javascript
-import Vue from 'vue'
-
-if (process.browser) {
   // ...
+  Vue.use(VueQuillEditor)
   // 由此開始設定
   const fonts = ['思源黑體', 'Segoe']   // 要加入的字體
   const Font = VueQuillEditor.Quill.imports['formats/font']
@@ -267,6 +222,86 @@ if (process.browser) {
 }
 .ql-font-Segoe { 
     font-family: "Segoe UI"; 
+}
+```
+
+* 上傳圖片並即時顯示
+
+參考文章: [Nuxt中使用vue-quill-editor](https://www.twblogs.net/a/5cf7a8afbd9eee14644e2184)
+
+參考文章: [FileReader by MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/FileReader)
+
+參考文章: [image如何上传服务器并插入editor #51](https://github.com/surmon-china/vue-quill-editor/issues/51)
+
+quill API: [getSelection()、insertEmbed()](https://quilljs.com/docs/api/#getselection)
+
+元件
+
+```html
+  <client-only>
+    <input
+      type="file"
+      style="display: none;"
+      id="getFile"
+      ref="getFile"
+      @change="uploadFile($event)"
+      accept="image/gif,image/jpeg,image/jpg,image/png"
+    >
+  </client-only>
+```
+
+```javascript
+{
+  data() {
+    return {
+      editor: null, // 存放 quill 實體
+      editorOption: {
+        // some quill options
+        modules: {
+          toolbar: {
+            // ...
+            handlers: {
+              'image': function () {
+                // 意思是使用插入圖片的功能時候，觸發文件上傳控件的點擊事件
+                document.getElementById('getFile').click();
+              }
+            }
+          }
+        },
+      }
+    }
+  },
+  methods: {
+    onEditorFocus(editor) {
+      this.editor = editor
+    },
+    onEditorReady(editor) {
+      this.editor = editor // 初始化
+    },
+    uploadFile(e) {
+
+      const file = e.target.files[0];
+
+      const data = new FormData();
+      data.append('file-to-upload', file)
+      // 可以使用post方法上傳文件到服務器
+      // 然後把返回的路徑拼接好插入到內容裏
+      // uploadFile(data).then(res => {
+      //   this.content += `<img src="${res.imgUrl}" alt="內容圖片">`;
+      // })
+
+      // 即時顯示圖片
+      // new FileReader() 
+      const vm = this
+      const rang = this.editor.getSelection() // 定位鼠標的位置，content 中的序列(index)
+      const lang = rang.index
+      const fr = new FileReader()
+      fr.onload = function (e) {
+        vm.editor.insertEmbed(lang, 'image', e.target.result) // 插入圖片
+      }
+      fr.readAsDataURL(file) // 存成 base64格式
+    }
+  }
 }
 ```
 

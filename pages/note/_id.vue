@@ -1,6 +1,14 @@
 <template>
   <section class="quill-container">
     <client-only>
+      <input
+        type="file"
+        style="display: none;"
+        id="getFile"
+        ref="getFile"
+        @change="uploadFile($event)"
+        accept="image/gif,image/jpeg,image/jpg,image/png"
+      >
       <quill-editor
         ref="editor"
         v-model="content"
@@ -8,6 +16,7 @@
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
         @ready="onEditorReady($event)"
+        @change="onEditorChange($event)"
       />
     </client-only>
   </section>
@@ -18,6 +27,7 @@ export default {
   data() {
     return {
       content: '<h1>無標題</h1><p>請寫下內容</p>',
+      editor: null,
       editorOption: {
         // some quill options
         modules: {
@@ -32,7 +42,7 @@ export default {
             ],
             handlers: {
               'image': function () {
-                // 意思是使用插入图片的功能时候，触发文件上传控件的点击事件
+                // 意思是使用插入圖片的功能時候，觸發文件上傳控件的點擊事件
                 document.getElementById('getFile').click();
               }
             }
@@ -59,15 +69,39 @@ export default {
     },
     onEditorFocus(editor) {
       // console.log('editor focus!', editor)
+      this.editor = editor
+
     },
     onEditorReady(editor) {
       // console.log('editor ready!', editor)
+      this.editor = editor
     },
     onEditorChange({ editor, html, text }) {
       // console.log('editor change!', editor, html, text)
       this.content = html
     },
 
+    uploadFile(e) {
+      const file = e.target.files[0];
+      const data = new FormData();
+      data.append('file-to-upload', file)
+      // 可以使用post方法上傳文件到服務器
+      // 然後把返回的路徑拼接好插入到內容裏
+      // uploadFile(data).then(res => {
+      //   this.content += `<img src="${res.imgUrl}" alt="內容圖片">`;
+      // })
+
+      // 即時顯示圖片
+      const vm = this
+      const rang = this.editor.getSelection() // 定位鼠標的位置，content 中的序列(index)
+      const lang = rang.index
+      const fr = new FileReader()
+
+      fr.onload = function (e) {
+        vm.editor.insertEmbed(lang, 'image', e.target.result)
+      }
+      fr.readAsDataURL(file)
+    }
   }
 }
 </script>
