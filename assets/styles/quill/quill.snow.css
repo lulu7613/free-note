@@ -619,7 +619,7 @@
   text-decoration: underline;
 }
 .ql-snow .ql-editor blockquote {
-  border-left: 4px solid #ccc;
+  border-left: 4px solid var(--primary-color);
   margin-bottom: 5px;
   margin-top: 5px;
   padding-left: 16px;
