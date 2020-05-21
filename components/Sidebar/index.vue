@@ -70,6 +70,7 @@ $sidebar-width: 240px;
   min-width: $sidebar-width;
   box-shadow: 0px 0px 4px $--color-shadow;
   overflow: auto;
+  position: relative;
 }
 
   // 設定 list 列表的 border，避免 hover 造成位移現象
@@ -78,9 +79,9 @@ $sidebar-width: 240px;
   }
 
 .footer {
-  width:fit-content;
-  margin: 0 auto;
-  padding-top: 5rem;
+  position: absolute;
+  bottom: 10%;
+  width: $sidebar-width;
 }
 
 .icon {
