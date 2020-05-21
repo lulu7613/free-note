@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "title": "My test2222",
+      "auther": "lulu"
+    },
+    {
+      "id": 4,
+      "title": "My test444",
+      "auther": "lulu"
+    },
+    {
+      "id": 4568452,
+      "title": "My test444",
+      "auther": "lulu"
+    }
+  ]
+}
