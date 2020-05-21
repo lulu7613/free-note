@@ -65,19 +65,14 @@ export default {
 
   methods: {
     onEditorBlur(editor) {
-      // console.log('editor blur!', editor)
     },
     onEditorFocus(editor) {
-      // console.log('editor focus!', editor)
       this.editor = editor
-
     },
     onEditorReady(editor) {
-      // console.log('editor ready!', editor)
       this.editor = editor
     },
     onEditorChange({ editor, html, text }) {
-      // console.log('editor change!', editor, html, text)
       this.content = html
     },
 
