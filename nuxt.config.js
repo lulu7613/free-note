@@ -7,7 +7,7 @@ function resolve(dir) {
 import webpack from 'webpack'
 
 export default {
-  mode: 'universal',
+  mode: 'spa', // 更改模式 universal or spa
   /*
   ** Headers of the page
   */
