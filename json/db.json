@@ -15,5 +15,19 @@
       "title": "My test444",
       "auther": "lulu"
     }
+  ],
+  "deletes": [
+    {
+      "id": 4568452,
+      "title": "My test444",
+      "auther": "lulu"
+    }
+  ],
+  "stars": [
+    {
+      "id": 4,
+      "title": "My test444",
+      "auther": "lulu"
+    }
   ]
 }

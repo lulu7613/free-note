@@ -402,6 +402,30 @@ export default {
 ```
 
 
+## json server
+
+* Github: [json-server](https://github.com/typicode/json-server#getting-started)
+
+* 參考文章: [使用 JSON Server 快速模擬 Restful API](https://andy6804tw.github.io/2018/02/01/json-server-intro/)
+
+* 參考文章: [json-server常用自定义路由和简单配置](https://blog.csdn.net/weixin_40817115/article/details/81281454)
+
+### 安裝注意事項:
+
+1. 不是放在根目錄下，需加上目錄名稱
+
+2. 如果運行 json-server 會報找不到 json-server 的話，在 package.json 新增
+
+```json
+{
+  "scripts": {
+    "mock": "json-server --c json/json-server.json json/db.json"
+  },
+}
+// --c是 –config的缩写，意思是指定配置文件为json-server.json ，同时指定数据文件为db.json。
+```
+
+
 ## 其他
 
 ### 引用思源黑體：
