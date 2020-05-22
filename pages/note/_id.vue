@@ -1,6 +1,7 @@
 <template>
-  <section class="quill-container">
+  <section v-if="templateNote" class="quill-container">
     <client-only>
+      <el-button type="primary" @click="saveData()">存檔</el-button>
       <input
         type="file"
         style="display: none;"
@@ -11,7 +12,7 @@
       >
       <quill-editor
         ref="editor"
-        v-model="content"
+        v-model="templateNote.content"
         :options="editorOption"
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
@@ -23,10 +24,14 @@
 </template>
 
 <script>
+import { create_note, update_note } from '~/api/db.js'
+
 export default {
   data() {
     return {
-      content: '<h1>無標題</h1><p>請寫下內容</p>',
+      isNewNote: null,
+      templateNote: null,
+      defaultContent: '<h1>無標題</h1><p>請寫下內容</p>',
       editor: null,
       editorOption: {
         // some quill options
@@ -49,21 +54,71 @@ export default {
           }
         },
         theme: 'snow',
-        placeholder: 'Compose an epic...'
+        placeholder: ''
       }
     }
   },
 
-  created() {
+  mounted() {
+    this.setNoteContent()
+  },
+
+  beforeDestroy() {
+    // 進行存檔
+    // 內容是預設的話不做存檔
   },
 
   computed: {
     routerId() {
       return this.$route.params.id
+    },
+    myNotes() {
+      return this.$store.state.db.myAllNotes
     }
+
   },
 
   methods: {
+    async setNoteContent() {
+      await this.checkMyNotes()
+      this.templateNote = this.getNote(this.routerId)
+
+      if (this.templateNote) {
+        this.isNewNote = false
+        // this.content = this.templateNote.content
+      } else {
+        this.isNewNote = true
+        this.templateNote = {
+          id: this.routerId,
+          content: this.defaultContent,
+          isStar: false
+        }
+      }
+    },
+
+    async checkMyNotes() {
+      if (!this.myNotes) {
+        await this.$store.dispatch('db/get_all_notes')
+      }
+    },
+
+    getNote(routerId) {
+      if (!this.myNotes) return
+      return this.myNotes.find(i => i.id === routerId)
+    },
+
+    async saveData() {
+      if ( this.templateNote.content === this.defaultContent ) return
+
+      if (this.isNewNote) {
+        await create_note(this.templateNote)
+        this.isNewNote = false
+      } else {
+        await update_note(this.templateNote)
+        this.isNewNote = false
+      }
+    },
+
     onEditorBlur(editor) {
     },
     onEditorFocus(editor) {
@@ -73,7 +128,7 @@ export default {
       this.editor = editor
     },
     onEditorChange({ editor, html, text }) {
-      this.content = html
+      this.templateNote.content = html
     },
 
     uploadFile(e) {
@@ -127,6 +182,7 @@ export default {
   border-bottom: 1px solid rgba(204, 204, 204, 0.5);
 }
 
+// TODO: 如果 toolbar 變成兩行，height 設定會跑掉
 .ql-container.ql-snow {
   height: calc(100vh - var(--toolbar-height) - var(--toolbar-mb));
   padding: 0 var(--padding-width);
