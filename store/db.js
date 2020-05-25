@@ -14,6 +14,6 @@ export const actions = {
   async get_all_notes({commit}) {
     const url = '/api/notes/'
     const res = await axios.get(url)
-    commit('SET_ALL_LIST', res)    
+    commit('SET_ALL_LIST', res.data)    
   }
 }
