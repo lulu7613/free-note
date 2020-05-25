@@ -34,10 +34,6 @@ export default {
 @import '~assets/styles/variables.scss';
 
   .select {
-    .el-input {
-      width: 25rem;
-    }
-
     .el-input--suffix .el-input__inner {
       border: 0;
       font-family: inherit;
