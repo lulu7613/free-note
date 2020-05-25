@@ -48,6 +48,11 @@
   .notes-view {
     background-color: $--color-dark;
   }
+
+  // Cart
+  .cart-box {
+    background-color: $--color-deep;
+  }
 }
 
 .theme-sunny {
@@ -79,6 +84,11 @@
 
   // Navbar notes view type
   .notes-view {
+    background-color: white;
+  }
+
+  // Cart
+  .cart-box {
     background-color: white;
   }
 }
