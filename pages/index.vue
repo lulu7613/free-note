@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar/>
-    <div>123</div>
+    <div class="py-4">123456</div>
   </div>
 </template>
 
@@ -32,7 +32,4 @@ export default {
 </script>
 
 <style lang="scss">
-  .container {
-    padding: 0 var(--padding-width);
-  }
 </style>
