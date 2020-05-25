@@ -1,9 +1,9 @@
 export const state = () => ({
-  appMode: 'night'
+  appTheme: 'night'
 })
 
 export const mutations = {
-  CHANGE_MODE(state, type) {
-    state.appMode = type
-  }
+  CHANGE_APP_THEME(state, type) {
+    state.appTheme = type
+  },
 }

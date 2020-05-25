@@ -28,20 +28,20 @@ export default {
   },
 
   computed: {
-    appMode() {
-      return this.$store.state.appMode
+    appTheme() {
+      return this.$store.state.appTheme
     },
     isNightMode() {
-      return this.appMode === 'night' 
+      return this.appTheme === 'night' 
     },
     isSunnyMode() {
-      return this.appMode === 'sunny'
+      return this.appTheme === 'sunny'
     }
   },
 
   methods: {
     actMode(mode) {
-      this.$store.commit('CHANGE_MODE', mode)
+      this.$store.commit('CHANGE_APP_THEME', mode)
     }
   }
 }

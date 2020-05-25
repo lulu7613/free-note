@@ -1,3 +1,3 @@
 export default {
-  appMode: state => state.appMode
+  appTheme: state => state.appTheme
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout d-flex" :class="[`theme-${appMode}`]">
+  <div class="layout d-flex" :class="[`theme-${appTheme}`]">
     <Sidebar />
     <nuxt style="width: 100%" />
   </div>
@@ -22,8 +22,8 @@ export default {
   },
 
   computed: {
-    appMode() {
-      return this.$store.state.appMode
+    appTheme() {
+      return this.$store.state.appTheme
     }
   },
 
