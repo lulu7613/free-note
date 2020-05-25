@@ -21,6 +21,14 @@ $ yarn generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+## 素材
+
+* UI 設計: [設計師建良](https://challenge.thef2e.com/user/3?schedule=4279#works-4279)
+
+* Icon 參考1: [Google](https://www.flaticon.com/authors/google) from [www.flaticon.com](https://www.flaticon.com/)
+
+* Icon 參考2: [連結](https://drive.google.com/drive/folders/1b-IhXyFHWbsPmL1zehNEZZ1f9XELF2lb)
+
 
 ## Nuxt.js 相關
 
@@ -39,7 +47,7 @@ $ yarn add --save-dev node-sass sass-loader
 * state 必須使用 箭頭函式
 ```javascript
 export const state = () => ({
-  appMode: 'night'
+  appTheme: 'night'
 })
 ```
 
@@ -48,8 +56,8 @@ export const state = () => ({
 export default {
   // ...
   computed: {
-    appMode() {
-      return this.$store.state.appMode
+    appTheme() {
+      return this.$store.state.appTheme
     }
   }
 }
@@ -59,7 +67,7 @@ export default {
 ```javascript
 // getters.js
 export default {
-  appMode: state => state.appMode
+  appTheme: state => state.appTheme
 }
 ```
 
@@ -452,7 +460,7 @@ Sidebar.vue
 layout
 ```vue
 <template>
-  <div class="layout d-flex" :class="[`theme-${appMode}`]">
+  <div class="layout d-flex" :class="[`theme-${appTheme}`]">
     <Sidebar />
     <nuxt style="width: 100%" />
   </div>
