@@ -43,6 +43,11 @@
       background-color: $--color-dark;
     }
   }
+
+  // Navbar notes view type
+  .notes-view {
+    background-color: $--color-dark;
+  }
 }
 
 .theme-sunny {
@@ -70,5 +75,10 @@
 
   .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
     fill: $--color-info;
+  }
+
+  // Navbar notes view type
+  .notes-view {
+    background-color: white;
   }
 }
