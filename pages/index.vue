@@ -1,13 +1,16 @@
 <template>
-  <div>
-    所有筆記
+  <div class="container">
+    <Navbar/>
+    <div>123</div>
   </div>
 </template>
 
 <script>
+import Navbar from '~/components/Navbar/index.vue'
 
 export default {
   components: {
+    Navbar
   },
 
   computed: {
@@ -28,5 +31,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  :root {
+  --padding-width: 8vw;
+  }
+  .container {
+    padding: 0 var(--padding-width);
+  }
 </style>

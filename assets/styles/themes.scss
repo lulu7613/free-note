@@ -35,6 +35,14 @@
   .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
     fill: white;
   }
+
+  // Navbar select
+  .select {
+    .el-input--suffix .el-input__inner {
+      color: white;
+      background-color: $--color-dark;
+    }
+  }
 }
 
 .theme-sunny {
