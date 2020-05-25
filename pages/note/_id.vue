@@ -160,7 +160,6 @@ export default {
 :root {
   --toolbar-height: 60px;
   --toolbar-mb: 35px;
-  --padding-width: 8vw;
 }
 
 // 容器

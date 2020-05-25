@@ -2,6 +2,9 @@ $--color-primary: #84A5FF !default;       // 主題色
 $--color-shadow: #0000000D !default;      // border-shadow
 $--color-tag: #E6EDFF !default;           // 標籤背景
 
+:root {
+  --padding-width: 8vw;                     // 頁面 padding 寬度
+  }
 
 // 深色主題
 $--color-black: #25272C !default;         // 背景

@@ -32,9 +32,6 @@ export default {
 </script>
 
 <style lang="scss">
-  :root {
-  --padding-width: 8vw;
-  }
   .container {
     padding: 0 var(--padding-width);
   }
