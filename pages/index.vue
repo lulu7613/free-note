@@ -2,7 +2,7 @@
   <div class="container">
     <Navbar/>
     <el-row :gutter="20" class="pt-4">
-      <Card v-for="item in myNotes" :key="item.id" :note-data="item" />
+      <Card v-for="item in myNotes" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </el-row>
   </div>
 </template>
@@ -30,7 +30,10 @@ export default {
   methods: {
     getAllNotes() {
       this.$store.dispatch('db/get_all_notes')
-    }
+    },
+    actRedirect(id) {
+      console.log('I get Id!')
+    },
   }
 }
 </script>

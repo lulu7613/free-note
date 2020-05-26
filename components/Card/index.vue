@@ -1,13 +1,13 @@
 <template>
   <el-col :sm="20" :md="12" :lg="8" class="mb-4">
-    <div class="cart-box cursor-pointer rounded" @click="actRedirect()">
+    <div class="cart-box cursor-pointer rounded" @click="actRedirect(noteData.id)">
       <div class="cart-img rounded">
         <img src="~/static/images/notebook.jpg" alt="我的筆記">
       </div>
       <h2 class="cart-title text-center my-3">我是標題，點我！</h2>
-      <div class="cart-content d-flex justify-content-center align-items-center">
+      <div class="cart-content d-flex justify-content-between align-items-center">
         <Svg-icon icon-class="star" class-name="icon text-gray cursor-pointer" @click.stop="actStar()" />
-        <span class="cart-date text-gray ml-3">{{ noteData.id }}</span>
+        <span class="cart-date text-gray ml-3">{{ noteData.id | returnDate }}</span>
       </div>
     </div>
   </el-col>
@@ -33,16 +33,22 @@ export default {
 
   filters: {
     returnDate(id) {
-      
+      function addZero(num) {
+        return (num > 9 ? num : '0' + num)
+      }
+      const date = new Date(parseInt(id))
+      const year = date.getFullYear()
+      const month = addZero(date.getMonth())
+      const day = addZero(date.getDay())
+
+      return `${year}/${month}/${day}`
     }
   },
 
-  mounted() {
-  },
-
   methods: {
-    actRedirect() {
+    actRedirect(id) {
       console.log('go to note!')
+      this.$emit('actRedirect', id)
     },
     actStar() {
       console.log('add Star!')
@@ -56,11 +62,11 @@ export default {
   $--icon-width: 22px;
 
   .cart-box {
-    // width: 330px;
+    // max-width: 330px;
     height: 245px;
     padding: 12px;
     border: 2px solid transparent;
-    box-shadow: 0 0 4px $--color-shadow;
+    // box-shadow: 0 0 4px $--color-shadow;
     box-sizing: border-box;
 
     &:hover {
