@@ -66,7 +66,7 @@ export default {
     height: 245px;
     padding: 12px;
     border: 2px solid transparent;
-    // box-shadow: 0 0 4px $--color-shadow;
+    box-shadow: 0 0 4px $--color-shadow;
     box-sizing: border-box;
 
     &:hover {
