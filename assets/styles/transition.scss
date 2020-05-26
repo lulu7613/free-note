@@ -3,6 +3,11 @@
   transition: all .2s ease;
 }
 
+.slide-enter-active {
+  // transition-delay: .3s;
+  display: none;
+}
+
 .slide-enter, 
 .slide-leave-to {
   transform: translateX(30px);

@@ -486,3 +486,34 @@ layout
   height: calc(100vh - var(--toolbar-height) - var(--toolbar-mb));
 }
 ```
+
+### Vue 的 transition-group
+
+[Vue transition 文檔](https://cn.vuejs.org/v2/guide/transitions.html)
+
+問題: 切換元素時，元素會同時進行 進入 & 離開 的過度動畫，造成版面跑掉。解決方法: 使用 mode="in-out / out-in"。但 transition-group 下 mode 無效果，[Issues](https://github.com/vuejs/vue/issues/3974)。
+
+Issues 中有提解決方法: 
+
+(元件必須使用 v-if 判斷顯示時機，不能使用 v-show)
+
+```scss
+// for mode out-in use the enter-active class
+// for mode in-out use the leave-active class
+
+.slide-enter-active, 
+.slide-leave-active {
+  transition: all .2s ease;
+}
+
+.slide-enter-active {
+  display: none;
+  transition-delay: .5s; // 可加上 delay
+}
+
+.slide-enter, 
+.slide-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
+}
+```
