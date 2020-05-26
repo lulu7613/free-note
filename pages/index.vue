@@ -1,9 +1,11 @@
 <template>
   <div class="container">
     <Navbar/>
-    <el-row :gutter="20" class="pt-4">
+    <transition name="slide">
+    <el-row v-show="notesViewType === 'card'" :gutter="20" class="pt-4">
       <Card v-for="item in myNotes" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </el-row>
+    </transition>
   </div>
 </template>
 
@@ -18,6 +20,9 @@ export default {
   },
 
   computed: {
+    notesViewType() {
+      return this.$store.state.notesView
+    },
     myNotes() {
       return this.$store.state.db.myAllNotes
     }
