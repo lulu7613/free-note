@@ -1,7 +1,7 @@
 export const state = () => ({
   appTheme: 'night',
   notesSort: 'desc',
-  notesView: 'menu'
+  notesView: 'card'
 })
 
 export const mutations = {

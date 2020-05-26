@@ -6,10 +6,10 @@
       :class="[ isList ]"
       @click="actViewsType('list')" />
     <svg-icon
-      icon-class="view_menu"
+      icon-class="view_card"
       class-name="icon text-gray cursor-pointer p-2 rounded ml-1"
-      :class="[ isMenu ]"
-      @click="actViewsType('menu')" />
+      :class="[ iscard ]"
+      @click="actViewsType('card')" />
   </div>
 </template>
 
@@ -28,8 +28,8 @@ export default {
     isList() {
       return this.notesView === 'list' ? 'view-active' : 'notes-view'
     },
-    isMenu() {
-      return this.notesView === 'menu' ? 'view-active' : 'notes-view'
+    iscard() {
+      return this.notesView === 'card' ? 'view-active' : 'notes-view'
     }
   },
 
