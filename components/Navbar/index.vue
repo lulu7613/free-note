@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4 d-flex justify-content-between align-items-center">
+  <div class="py-4 mb-4 d-flex justify-content-between align-items-center">
     <select-sort />
     <notes-view />
   </div>

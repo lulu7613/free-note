@@ -2,7 +2,7 @@
   <div class="container">
     <Navbar/>
     <transition-group name="slide">
-    <el-row v-if="notesViewType === 'card'" :gutter="20" class="pt-4" :key="'card'">
+    <el-row v-if="notesViewType === 'card'" :gutter="20" :key="'card'">
       <Card v-for="item in myNotes" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </el-row>
     <div v-else :key="'list'">
