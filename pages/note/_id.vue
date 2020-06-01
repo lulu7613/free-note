@@ -1,7 +1,7 @@
 <template>
-  <section v-if="templateNote" class="quill-container">
+  <section v-if="api_data" class="quill-container">
     <client-only>
-      <el-button type="primary" @click="saveData()">存檔</el-button>
+      <!-- <el-button type="primary" @click="saveData()">存檔</el-button> -->
       <input
         type="file"
         style="display: none;"
@@ -12,7 +12,7 @@
       >
       <quill-editor
         ref="editor"
-        v-model="templateNote.content"
+        v-model="content"
         :options="editorOption"
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
@@ -30,8 +30,12 @@ export default {
   data() {
     return {
       isNewNote: null,
-      templateNote: null,
-      defaultContent: '<h1>無標題</h1><p>請寫下內容</p>',
+      api_data: null, // 存放遠端取得的 data
+      content: null,  // 存放 quill 的編輯內容
+      defaultContent: [
+        { insert: '無標題\n\n', attributes: { bold: true, size: 'huge' } },
+        { insert: '請輸入內容' },
+      ],
       editor: null,
       editorOption: {
         // some quill options
@@ -60,12 +64,11 @@ export default {
   },
 
   mounted() {
-    this.setNoteContent()
+    this.getNoteContent()
   },
 
   beforeDestroy() {
-    // 進行存檔
-    // 內容是預設的話不做存檔
+    this.saveData()
   },
 
   computed: {
@@ -79,16 +82,15 @@ export default {
   },
 
   methods: {
-    async setNoteContent() {
+    async getNoteContent() {
       await this.checkMyNotes()
-      this.templateNote = this.getNote(this.routerId)
+      this.api_data = this.getNote(this.routerId)
 
-      if (this.templateNote) {
+      if (this.api_data) {
         this.isNewNote = false
-        // this.content = this.templateNote.content
       } else {
         this.isNewNote = true
-        this.templateNote = {
+        this.api_data = {
           id: this.routerId,
           content: this.defaultContent,
           isStar: false
@@ -96,39 +98,34 @@ export default {
       }
     },
 
-    async checkMyNotes() {
-      if (!this.myNotes) {
-        await this.$store.dispatch('db/get_all_notes')
-      }
+    onEditorReady(editor) {
+      this.editor = editor
+      this.editor.setContents(this.api_data.content)
+      this.checkTitleAttributes()
     },
 
-    getNote(routerId) {
-      if (!this.myNotes) return
-      return this.myNotes.find(i => i.id === routerId)
+    onEditorChange({ editor, html, text }) {
+      this.checkTitleAttributes()
+      // this.templateNote.content = html
     },
 
     async saveData() {
-      if ( this.templateNote.content === this.defaultContent ) return
+      const content = this.getEditorContents()
+      const isDefaultTitle = content[0].insert.includes('無標題') && content[0].insert.length === 3
+      const isDefaultContent = content[1].insert.includes('請輸入內容') && content[1].insert.length === 8
+
+      if ( isDefaultTitle && isDefaultContent) return
+
+      const data = _.cloneDeep(this.api_data)
+      data.content = content
 
       if (this.isNewNote) {
-        await create_note(this.templateNote)
+        await create_note(data)
         this.isNewNote = false
       } else {
-        await update_note(this.templateNote)
+        await update_note(data)
         this.isNewNote = false
       }
-    },
-
-    onEditorBlur(editor) {
-    },
-    onEditorFocus(editor) {
-      this.editor = editor
-    },
-    onEditorReady(editor) {
-      this.editor = editor
-    },
-    onEditorChange({ editor, html, text }) {
-      this.templateNote.content = html
     },
 
     uploadFile(e) {
@@ -151,6 +148,35 @@ export default {
         vm.editor.insertEmbed(lang, 'image', e.target.result)
       }
       fr.readAsDataURL(file)
+    },
+
+    async checkMyNotes() {
+      if (!this.myNotes) {
+        await this.$store.dispatch('db/get_all_notes')
+      }
+    },
+
+    getNote(routerId) {
+      if (!this.myNotes) return
+      return this.myNotes.find(i => i.id === routerId)
+    },
+
+    getEditorContents() {
+      return this.editor.getContents().ops
+    },
+
+    checkTitleAttributes() {
+      const content = this.getEditorContents()
+      const isNoAttributes = !content[0].attributes // 首行沒有標題的樣式
+      if (isNoAttributes) {
+        this.editor.insertText(0, ' ', {bold: true, size: 'huge'})
+      }
+    },
+
+    onEditorBlur(editor) {
+    },
+    onEditorFocus(editor) {
+      this.editor = editor
     }
   }
 }
@@ -165,7 +191,7 @@ export default {
 // 容器
 .quill-container {
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: auto;
 
   // scrollbar
   ::-webkit-scrollbar-thumb {
