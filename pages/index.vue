@@ -3,10 +3,10 @@
     <Navbar/>
     <transition-group name="slide">
     <el-row v-if="notesViewType === 'card'" :gutter="20" :key="'card'">
-      <Card v-for="item in myNotes" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
+      <Card v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </el-row>
     <div v-else :key="'list'">
-      <List v-for="item in myNotes" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
+      <List v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </div>
     </transition-group>
   </div>
@@ -28,9 +28,13 @@ export default {
     notesViewType() {
       return this.$store.state.notesView
     },
-    myNotes() {
-      return this.$store.state.db.myAllNotes
-    }
+    NoteData() {
+      return _.cloneDeep(this.$store.state.db.myAllNotes)
+    },
+    notesBySort() {
+      const sort = this.$store.state.notesSort
+      return _.orderBy(this.NoteData, ['id'], [sort])
+    },
   },
 
   mounted() {
