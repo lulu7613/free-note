@@ -46,7 +46,7 @@ export default {
       this.$store.dispatch('db/get_all_notes')
     },
     actRedirect(id) {
-      console.log('I get Id!')
+      this.$router.push({ path: `/note/${id}` })
     },
   }
 }
