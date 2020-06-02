@@ -2,10 +2,10 @@
   <div class="container">
     <Navbar/>
     <transition-group name="slide">
-    <el-row v-if="notesViewType === 'card'" :gutter="20" :key="'card'">
+    <el-row v-if="notesViewType === 'card'" :gutter="20" key="card">
       <Card v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </el-row>
-    <div v-else :key="'list'">
+    <div v-else key="list">
       <List v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </div>
     </transition-group>
@@ -14,8 +14,8 @@
 
 <script>
 import Navbar from '~/components/Navbar/index.vue'
-import Card from '~/components/Card/index.vue'
-import List from '~/components/List/index.vue'
+import Card from '~/components/NoteView/Card.vue'
+import List from '~/components/NoteView/List.vue'
 
 export default {
   components: {

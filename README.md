@@ -517,3 +517,17 @@ Issues 中有提解決方法:
   opacity: 0;
 }
 ```
+
+### Vue 的 mixin
+
+當多個組件的 Vue 設定(生命週期、data、methods...)相同時，可使用 mixin 共用。
+此專案使用到的地方: components/NoteView 中的 Card.vue 和 List.vue
+
+引入方式
+```javascript
+import config from './mixins/index.js'
+
+export default {
+  mixins: [config]
+}
+```
