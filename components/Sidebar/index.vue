@@ -19,7 +19,7 @@
         <li 
           v-for="(item, k) in sidebarList" 
           :key="k" 
-          class="sidebar-type-hover d-flex rounded cursor-pointer mt-2 py-2 pl-4">
+          class="sidebar-type-hover d-flex rounded align-items-center cursor-pointer mt-2 py-2 pl-4">
           <svg-icon :icon-class="item.icon" class-name="icon mr-3" />
           <nuxt-link :to="item.link" class="box-size-border">{{ item.title }}</nuxt-link>
         </li>
