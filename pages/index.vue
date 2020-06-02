@@ -53,7 +53,4 @@ export default {
 </script>
 
 <style lang="scss" scope>
-  .test {
-    display: inline-block;
-  }
 </style>
