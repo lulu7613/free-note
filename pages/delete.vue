@@ -15,7 +15,7 @@
     <div v-else key="list">
       <List v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect">
         <slot>
-          <div class="d-flex">
+          <div class="d-flex" style="min-width: 110px">
             <el-link type="primary" icon="el-icon-refresh-right" class="mr-3" @click.stop="actRecovery(item)">復原</el-link>
             <el-link type="danger" icon="el-icon-delete" @click.stop="actDeleteNote(item.id)">刪除</el-link>
           </div>
