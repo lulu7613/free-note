@@ -1,6 +1,6 @@
 export const state = () => ({
   appTheme: 'night',
-  notesSort: 'desc',
+  notesSort: 'asc',
   notesView: 'card'
 })
 
