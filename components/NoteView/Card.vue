@@ -2,7 +2,8 @@
   <el-col :sm="20" :md="12" :lg="8" class="mb-4">
     <div class="cart-box cursor-pointer rounded" @click="actRedirect(data.id)">
       <div class="cart-img rounded">
-        <img src="~/static/images/notebook.jpg" alt="我的筆記">
+        <!-- <img src="~/static/images/notebook1.jpg" alt="我的筆記"> -->
+        <img :src="require(`~/static/images/notebook${data.noteImg}.jpg`)" alt="我的筆記">
       </div>
       <h2 class="cart-title text-center my-3">{{ data.content[0].insert }}</h2>
       <div class="cart-content d-flex justify-content-between align-items-center">

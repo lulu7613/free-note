@@ -119,6 +119,7 @@ export default {
       data.content = content
 
       if (this.isNewNote) {
+        data.noteImg = _.random(1, 8)
         await create_note(data)
         this.isNewNote = false
       } else {
