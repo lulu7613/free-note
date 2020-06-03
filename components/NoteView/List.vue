@@ -10,7 +10,7 @@
       </div>
     </slot>
     <span class="text-gray ml-3">{{ noteData.id | returnDate }}</span>
-    <h2 class="list-title text-center ml-3 my-3">{{ data.content[0].insert }}</h2>
+    <h2 class="list-title text-center white-nowrap ml-3 my-3">{{ data.content[0].insert }}</h2>
   </div>
 </template>
 

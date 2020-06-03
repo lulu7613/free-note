@@ -66,6 +66,12 @@ a {
   box-sizing: border-box;
 }
 
+.white-nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // 容器
 .container {
   padding: 0 var(--padding-width);
