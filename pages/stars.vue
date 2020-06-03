@@ -16,9 +16,6 @@
 </template>
 
 <script>
-import Navbar from '~/components/Navbar/index.vue'
-import Card from '~/components/NoteView/Card.vue'
-import List from '~/components/NoteView/List.vue'
 import config from '~/mixins/page.js'
 
 export default {

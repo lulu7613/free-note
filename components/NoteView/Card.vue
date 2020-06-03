@@ -6,10 +6,17 @@
       </div>
       <h2 class="cart-title text-center my-3">{{ data.content[0].insert }}</h2>
       <div class="cart-content d-flex justify-content-between align-items-center">
-        <div @click.stop="actStar()">
-          <Svg-icon v-show="data.isStar" icon-class="star" class-name="icon text-primary cursor-pointer" />
-          <Svg-icon v-show="!data.isStar" icon-class="star" class-name="icon text-gray cursor-pointer" />
-        </div>
+        <slot>
+          <div class="d-flex">
+            <div class="mr-1" @click.stop="actStar()">
+              <Svg-icon v-show="data.isStar" icon-class="star" class-name="icon text-primary cursor-pointer" />
+              <Svg-icon v-show="!data.isStar" icon-class="star" class-name="icon text-gray cursor-pointer" />
+            </div>
+            <div class="delete-hover" @click.stop="actAddDeletePage()">
+              <Svg-icon icon-class="delete" class-name="icon-delete text-danger cursor-pointer" />
+            </div>
+          </div>
+        </slot>
         <span class="cart-date text-gray ml-3">{{ data.id | returnDate }}</span>
       </div>
     </div>
@@ -27,6 +34,7 @@ export default {
 <style lang="scss" scope>
   @import '~assets/styles/variables.scss';
   $--icon-width: 22px;
+  $--icon-delete-width: 27px;
 
   .cart-box {
     // max-width: 330px;
@@ -45,6 +53,18 @@ export default {
   .icon {
     width: $--icon-width;
     height: $--icon-width;
+  }
+
+  .icon-delete {
+    width: $--icon-delete-width;
+    height: $--icon-delete-width;
+    opacity: .2;
+  }
+
+  .delete-hover:hover {
+    .icon-delete {
+      opacity: 1;
+    }
   }
 
   .cart-img {

@@ -15,3 +15,10 @@ export function update_note(data) {
     data
   })
 }
+
+export function delete_note(id) {
+  return axios ({
+    url: `/api/notes/${id}`,
+    method: 'delete',
+  })
+}

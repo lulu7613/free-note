@@ -41,6 +41,11 @@ export default {
       this.data.isStar = !this.data.isStar
       await update_note(this.data)
       this.$store.dispatch('db/get_all_notes')
+    },
+    async actAddDeletePage() {
+      this.data.isDelete = true
+      await update_note(this.data)
+      this.$store.dispatch('db/get_all_notes')
     }
   }
 }

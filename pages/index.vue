@@ -8,14 +8,14 @@
     <div v-else key="list">
       <List v-for="item in notesBySort" :key="item.id" :note-data="item" @actRedirect="actRedirect" />
     </div>
+    <div v-show="notesBySort.length === 0" key="noData">
+      還沒有筆記哦，趕快紀錄屬於自己的回憶吧~ (つ´ω`)つ
+    </div>
     </transition-group>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar/index.vue'
-import Card from '~/components/NoteView/Card.vue'
-import List from '~/components/NoteView/List.vue'
 import config from '~/mixins/page.js'
 
 export default {
