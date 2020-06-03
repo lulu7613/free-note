@@ -23,7 +23,9 @@ export default {
 
   computed: {
     NoteData() {
-      return _.cloneDeep(this.$store.state.db.myAllNotes)
+      const data = _.cloneDeep(this.$store.state.db.myAllNotes)
+      if (!data) return
+      return data.filter(i => !i.isDelete )
     },
   },
 

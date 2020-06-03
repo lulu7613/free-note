@@ -28,7 +28,7 @@ export default {
     NoteData() {
       const data = _.cloneDeep(this.$store.state.db.myAllNotes)
       if (!data) return
-      return data.filter(i => i.isStar)
+      return data.filter(i => i.isStar && !i.isDelete )
     }
   }
 }
