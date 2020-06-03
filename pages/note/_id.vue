@@ -1,7 +1,6 @@
 <template>
   <section v-if="api_data" class="quill-container">
     <client-only>
-      <!-- <el-button type="primary" @click="saveData()">存檔</el-button> -->
       <input
         type="file"
         style="display: none;"
@@ -126,6 +125,7 @@ export default {
         await update_note(data)
         this.isNewNote = false
       }
+      this.$store.dispatch('db/get_all_notes')
     },
 
     uploadFile(e) {
